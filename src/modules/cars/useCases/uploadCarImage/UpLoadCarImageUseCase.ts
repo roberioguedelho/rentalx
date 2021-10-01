@@ -1,0 +1,3 @@
+class UpLoadCarImageUseCase {}
+
+export { UpLoadCarImageUseCase };
