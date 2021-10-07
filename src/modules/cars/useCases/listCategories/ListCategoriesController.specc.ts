@@ -7,7 +7,7 @@ import { app } from "../../../../shared/infra/http/app";
 import createConnection from "../../../../shared/infra/typeorm";
 
 let connection: Connection;
-describe("Create category controller", () => {
+describe("List category controller", () => {
     beforeAll(async () => {
         connection = await createConnection();
         await connection.runMigrations();
@@ -16,7 +16,7 @@ describe("Create category controller", () => {
         const password = await hash("admin", 8);
 
         await connection.query(
-            `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, driver_license ) 
+            `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, driver_license )
                 values('${id}', 'admin', 'admin@admin.com.br', '${password}', true, 'now()', 'XXXXXXX')
             `
         );
@@ -27,7 +27,7 @@ describe("Create category controller", () => {
         await connection.close();
     });
 
-    it("Should be able to create a new category", async () => {
+    it("Should be able to list all categories controller", async () => {
         const responseToken = await request(app).post("/sessions").send({
             email: "admin@admin.com.br",
             password: "admin",
@@ -35,7 +35,7 @@ describe("Create category controller", () => {
 
         const { token } = responseToken.body;
 
-        const response = await request(app)
+        await request(app)
             .post("/categories")
             .send({
                 name: "test_name",
@@ -45,27 +45,8 @@ describe("Create category controller", () => {
                 Authorization: `Bearer ${token}`,
             });
 
-        expect(response.status).toBe(201);
-    });
+        const response = await request(app).get("/categories");
 
-    it("Should be able to create a new category with name exists", async () => {
-        const responseToken = await request(app).post("/sessions").send({
-            email: "admin@admin.com.br",
-            password: "admin",
-        });
-
-        const { token } = responseToken.body;
-
-        const response = await request(app)
-            .post("/categories")
-            .send({
-                name: "test_name",
-                description: "test_description",
-            })
-            .set({
-                Authorization: `Bearer ${token}`,
-            });
-
-        expect(response.status).toBe(400);
+        expect(response.status).toBe(200);
     });
 });
