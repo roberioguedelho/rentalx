@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 
-import { DayjsDateProvider } from "../../../shared/container/providers/dateProvider/implementations/DayjsDateProvider";
-import { AppError } from "../../../shared/errors/AppError";
-import { CarRepositoryInMemory } from "../../cars/repositories/in-memory/CarRepositoryInMemory";
-import { RentalsRepositoryInMemory } from "../repositories/in-memory/RentalsRepositoryInMemory";
+import { DayjsDateProvider } from "../../../../shared/container/providers/dateProvider/implementations/DayjsDateProvider";
+import { AppError } from "../../../../shared/errors/AppError";
+import { CarRepositoryInMemory } from "../../../cars/repositories/in-memory/CarRepositoryInMemory";
+import { RentalsRepositoryInMemory } from "../../repositories/in-memory/RentalsRepositoryInMemory";
 import { CreateRentalUseCase } from "./CreateRentalUseCase";
 
 let createRentalUseCase: CreateRentalUseCase;
