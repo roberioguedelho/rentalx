@@ -11,7 +11,7 @@ interface IRequest {
     user_id: string;
 }
 @injectable()
-class devolutionRentalUseCase {
+class DevolutionRentalUseCase {
     constructor(
         @inject("RentalsRepository")
         private rentalsRepository: IRentalsRepository,
@@ -21,7 +21,7 @@ class devolutionRentalUseCase {
         private dateProvider: IDateProvider
     ) {}
 
-    async execute(rental_id: string, user_id: string): Promise<Rental> {
+    async execute({ rental_id, user_id }: IRequest): Promise<Rental> {
         const rental = await this.rentalsRepository.findById(rental_id);
         const car = await this.carsRepository.findById(rental.car_id);
         const minimum_daily = 1;
@@ -61,4 +61,4 @@ class devolutionRentalUseCase {
     }
 }
 
-export { devolutionRentalUseCase };
+export { DevolutionRentalUseCase };
