@@ -21,6 +21,9 @@ class UserToken {
     @Column()
     user_id: string;
 
+    @Column()
+    expires_date: Date;
+
     @ManyToOne(() => User)
     @JoinColumn({ name: "user_id" })
     user: User;
