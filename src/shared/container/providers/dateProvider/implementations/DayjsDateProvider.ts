@@ -1,10 +1,12 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { injectable } from "tsyringe";
 
 import { IDateProvider } from "../IDateProvider";
 
 dayjs.extend(utc);
 
+@injectable()
 class DayjsDateProvider implements IDateProvider {
     addDays(days: number): Date {
         return dayjs().add(days, "days").toDate();
@@ -30,6 +32,10 @@ class DayjsDateProvider implements IDateProvider {
 
     covertToUTC(date: Date): string {
         return dayjs(date).utc().local().format();
+    }
+
+    addHours(hours: number): Date {
+        return dayjs().add(hours, "hour").toDate();
     }
 }
 
