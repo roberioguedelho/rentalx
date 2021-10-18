@@ -10,10 +10,10 @@ describe("List cars", () => {
         listCarsUseCase = new ListCarsUseCase(carRepositoryInMemory);
     });
 
-    it("Shouls be able to list all available cars", async () => {
+    it("Should be able to list all available cars", async () => {
         const car = await carRepositoryInMemory.create({
             name: "car1",
-            description: "desciptio car",
+            description: "description car",
             daily_rate: 140,
             license_plate: "DEF-1234",
             fine_amount: 100,
@@ -26,10 +26,10 @@ describe("List cars", () => {
         expect(cars).toEqual([car]);
     });
 
-    it("Shouls be able to list all available cars by brand", async () => {
+    it("Should be able to list all available cars by brand", async () => {
         const car = await carRepositoryInMemory.create({
             name: "car2",
-            description: "desciptio car2",
+            description: "description car2",
             daily_rate: 140,
             license_plate: "DEF-12345",
             fine_amount: 100,
