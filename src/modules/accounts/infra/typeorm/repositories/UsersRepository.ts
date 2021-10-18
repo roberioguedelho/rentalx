@@ -5,19 +5,19 @@ import { IUsersRepository } from "../../../repositories/IUsersRepository";
 import { User } from "../entities/User";
 
 class UsersRepository implements IUsersRepository {
-    private reposiotry: Repository<User>;
+    private repository: Repository<User>;
 
     constructor() {
-        this.reposiotry = getRepository(User);
+        this.repository = getRepository(User);
     }
     async findById(id: string): Promise<User> {
-        const user = await this.reposiotry.findOne(id);
+        const user = await this.repository.findOne(id);
 
         return user;
     }
 
     async findByEmail(email: string): Promise<User> {
-        const user = await this.reposiotry.findOne({ email });
+        const user = await this.repository.findOne({ email });
 
         return user;
     }
@@ -30,7 +30,7 @@ class UsersRepository implements IUsersRepository {
         driver_license,
         avatar,
     }: ICreateUserDTO): Promise<void> {
-        const user = this.reposiotry.create({
+        const user = this.repository.create({
             id,
             name,
             password,
@@ -39,7 +39,7 @@ class UsersRepository implements IUsersRepository {
             avatar,
         });
 
-        await this.reposiotry.save(user);
+        await this.repository.save(user);
     }
 }
 
