@@ -1,7 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
 
-import uploadConfg from "../../../../config/upload";
+import uploadConfig from "../../../../config/upload";
 import { AddSpecificationController } from "../../../../modules/cars/useCases/addSpecification/AddSpecificationController";
 import { CreateCarController } from "../../../../modules/cars/useCases/createCar/CreateCarController";
 import { ListCarController } from "../../../../modules/cars/useCases/listCars/ListCarController";
@@ -16,7 +16,7 @@ const listCarController = new ListCarController();
 const addSpecificationController = new AddSpecificationController();
 const upLoadCarImageController = new UpLoadCarImageController();
 
-const upload = multer(uploadConfg.upload("./tmp/cars"));
+const upload = multer(uploadConfig);
 
 carsRoutes.post(
     "/",
